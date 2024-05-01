@@ -1,22 +1,22 @@
 package org.example.back.loadbalancer;
 
-import org.example.back.registery.Server;
-import org.example.back.registery.ServerRegistry;
+import org.example.back.Server;
+import org.example.back.registery.ServiceRegistry;
 
 import java.util.concurrent.atomic.AtomicIntegerArray;
 
 public class RoundRobinLoadBalancerStrategy implements LoadBalancerStrategy {
     private static final int MAX_SERVICES = 100;
-    private final ServerRegistry serverMap;
+    private final ServiceRegistry serverMap;
     private final AtomicIntegerArray counters = new AtomicIntegerArray(MAX_SERVICES);
-    public RoundRobinLoadBalancerStrategy(ServerRegistry serverMap) {
+    public RoundRobinLoadBalancerStrategy(ServiceRegistry serverMap) {
 
         this.serverMap = serverMap;
     }
     @Override
     public Server getServer(String routeKey) {
 
-        var serverList = serverMap.find(routeKey);
+        var serverList = serverMap.getServers(routeKey);
 
         if (serverList == null ||  serverList.isEmpty()) {
             return null;

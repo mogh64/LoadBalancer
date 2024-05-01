@@ -1,6 +1,6 @@
 package back;
 
-import org.example.back.registery.Server;
+import org.example.back.Server;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

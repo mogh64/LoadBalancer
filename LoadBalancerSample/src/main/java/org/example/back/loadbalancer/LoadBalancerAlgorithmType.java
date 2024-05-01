@@ -1,13 +1,13 @@
 package org.example.back.loadbalancer;
 
 import lombok.Getter;
-import org.example.back.registery.ServerRegistryFactory;
+import org.example.back.registery.ServiceRegistryFactory;
 
 @Getter
 public enum LoadBalancerAlgorithmType {
-    Random(new RandomLoadBalancerStrategy(ServerRegistryFactory.getServerRegistry())),
-    RoundRobin(new RoundRobinLoadBalancerStrategy(ServerRegistryFactory.getServerRegistry())),
-    WeightedRoundRobin(new WeightedRoundRobinLoadBalancerStrategy(ServerRegistryFactory.getServerRegistry()));
+    Random(new RandomLoadBalancerStrategy(ServiceRegistryFactory.getServerRegistry())),
+    RoundRobin(new RoundRobinLoadBalancerStrategy(ServiceRegistryFactory.getServerRegistry())),
+    WeightedRoundRobin(new WeightedRoundRobinLoadBalancerStrategy(ServiceRegistryFactory.getServerRegistry()));
 
     private final LoadBalancerStrategy strategy;
 

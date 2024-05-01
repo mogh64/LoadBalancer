@@ -1,7 +1,7 @@
 package org.example.front.request;
 
 import com.sun.net.httpserver.HttpExchange;
-import org.example.back.registery.Server;
+import org.example.back.Server;
 
 import java.net.URI;
 import java.net.http.HttpRequest;

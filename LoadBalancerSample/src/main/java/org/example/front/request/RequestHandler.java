@@ -4,7 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.example.back.request.HttpRequestForwarder;
 import org.example.back.request.HttpRequestForwarderImpl;
-import org.example.back.registery.Server;
+import org.example.back.Server;
 import org.example.back.request.HttpResponse;
 import org.example.front.Configuration;
 import org.example.front.LoadBalancer;

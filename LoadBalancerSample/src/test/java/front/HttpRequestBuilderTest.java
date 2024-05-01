@@ -1,7 +1,7 @@
 package front;
 
 import com.sun.net.httpserver.HttpExchange;
-import org.example.back.registery.Server;
+import org.example.back.Server;
 import org.example.common.UriSchema;
 import org.example.front.request.HttpRequestBuilder;
 import org.junit.After;

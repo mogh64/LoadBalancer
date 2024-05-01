@@ -1,7 +1,7 @@
 package org.example.back.loadbalancer;
 
-import org.example.back.registery.Server;
-import org.example.back.registery.ServerRegistry;
+import org.example.back.Server;
+import org.example.back.registery.ServiceRegistry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,10 +11,10 @@ import java.util.concurrent.atomic.AtomicIntegerArray;
 
 public class WeightedRoundRobinLoadBalancerStrategy implements LoadBalancerStrategy {
     private static final int MAX_SERVICES = 100;
-    private final ServerRegistry serverMap;
+    private final ServiceRegistry serverMap;
     private final Map<String,List<Server>> serverCapacityMap = new HashMap<>();;
     private final AtomicIntegerArray counters = new AtomicIntegerArray(MAX_SERVICES);
-    public WeightedRoundRobinLoadBalancerStrategy(ServerRegistry serverMap) {
+    public WeightedRoundRobinLoadBalancerStrategy(ServiceRegistry serverMap) {
         this.serverMap = serverMap;
     }
     @Override
@@ -33,7 +33,7 @@ public class WeightedRoundRobinLoadBalancerStrategy implements LoadBalancerStrat
 
     private synchronized boolean initServerCapacityMap(String routeKey) {
         if (!serverCapacityMap.containsKey(routeKey)) {
-            var serverList = serverMap.find(routeKey);
+            var serverList = serverMap.getServers(routeKey);
             if (serverList == null ||  serverList.isEmpty()) {
                 return false;
             }

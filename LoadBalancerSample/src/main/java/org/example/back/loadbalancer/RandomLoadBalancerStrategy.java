@@ -1,21 +1,21 @@
 package org.example.back.loadbalancer;
 
-import org.example.back.registery.Server;
-import org.example.back.registery.ServerRegistry;
+import org.example.back.Server;
+import org.example.back.registery.ServiceRegistry;
 
 import java.util.Random;
 
 public class RandomLoadBalancerStrategy implements LoadBalancerStrategy {
 
     private final Random random;
-    private final ServerRegistry serverMap;
-    public RandomLoadBalancerStrategy(ServerRegistry serverMap) {
+    private final ServiceRegistry serverMap;
+    public RandomLoadBalancerStrategy(ServiceRegistry serverMap) {
         this.serverMap = serverMap;
         random = new Random();
     }
     @Override
     public Server getServer(String routeKey) {
-        var serverList = serverMap.find(routeKey);
+        var serverList = serverMap.getServers(routeKey);
         if (serverList == null ||  serverList.isEmpty()) {
             return null;
         }
